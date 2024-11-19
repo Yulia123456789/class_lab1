@@ -12,10 +12,15 @@ def click1():
         lbl1['text'] = f'{Variables.variable1}, {Variables.variable2} \n'
     def cmd2():
         lbl0 = Label(window,text='поставьте знак "-"', width=50, height=5, font=("Arial", 14), background='#FFE4E1').grid(row=1, column=2)
-        entr1 = Entry(root, width=10)
+        entr1 = Entry(window, width=10)
         entr1.grid(row=2, column=2)
-        entr2 = Entry(root, width=10)  
-        entr2.grid(row=3, column=3)
+        entr2 = Entry(window, width=10)
+        entr2.grid(row=3, column=2)
+        b2 = Button(window, text='Сохранить', width=30, height=3, font=("Arial", 14))
+        b2.config(command=save_numb)
+        b2['bg'] = '#EE82EE'
+        b2['fg'] = '#0A0A0A'
+        b2.grid(row=4, column=2)
     def cmd3():
         lbl1 = Label(window, width=50, height=4, background='#FFF68F',  font=("Arial", 12), )
         lbl1.grid(row=1, column=2)
@@ -30,10 +35,10 @@ def click1():
     window.title("2")
     text_button = ['Вывести числа на экран',  'Изменить введенные числа', 'Сумма введенных чисел','Найти наибольшее значение']
     r2 = 0
-    funcn = [cmd1, cmd2, cmd3, cmd4]
+    func = [cmd1, cmd2, cmd3, cmd4]
     for i2 in range(len(text_button)):
         b21 = Button(window, text=f'{text_button[i2]}', width=40, height=3, font=("Arial", 14), background='#BFEFFF', foreground='#0A0A0A')
-        cmd = lambda x=i2: funcn[x]()
+        cmd = lambda x=i2: func[x]()
         b21.config(command=cmd)
         b21.grid(row=0 + r2, column=0)
         r2 += 1
@@ -59,4 +64,7 @@ b2['bg'] = '#EE82EE'
 b2['fg'] = '#0A0A0A'
 b2.place(relx=.5, rely=.6, anchor="c")
 root.mainloop()
+
+
+
 
