@@ -10,7 +10,8 @@ class Student():
 
     def avrg_grade(self):
         avrg = sum(self.grade) / len(self.grade)
-        return avrg
+        full_inf = [self.surname, self.initials, self.group_number, self.grade, avrg]
+        return full_inf
 
 
     def grade_4_5(self):
@@ -33,27 +34,26 @@ students = [
 
 
 def sort_name():
-    new_list_students = []
-    for i in students:
-        a = list(i).append(str(i.avrg_grade()))
-        new_list_students.append(a)
     text_box = Text(window, width=50, height=10, font=("Arial", 14),
-                    background='#FFB6C1', foreground='#0A0A0A')
+                     background='#FFE4E1', foreground='#0A0A0A')
     text_box.grid(row=2, column=0)
-    message = ''
-
-    for i in students.sort(key= lambda student: student.avrg_grade()):
-        message += f'{i} \n'
-
-
+    full_inf = []
+    for student in students:
+        full_inf.append(student.avrg_grade())
+    full_inf.sort(key=lambda student2: student2[-1])
+    message = ""
+    for i in full_inf:
+        v = ''
+        for j in i:
+            v += str(j) + "  "
+        message += v + '\n'
     text_box.insert('end', message)
-
     text_box.config(state='disabled')
 
 def show_name_students_4_5():
 
     text_box = Text(window, width=50, height=10, font=("Arial", 14),
-                    background='#FFB6C1', foreground='#0A0A0A')
+                     background='#FFE4E1', foreground='#0A0A0A')
     text_box.grid(row=2, column=0)
     message = ""
     for student in students:
@@ -74,5 +74,5 @@ b21.config(command=show_name_students_4_5)
 b21.grid(row=0, column=0)
 b22 = Button(window, text='Упорядочить записи по возрастанию среднего балла', width=50, height=4,font=("Arial", 14), background='#FFB6C1', foreground='#0A0A0A')
 b22.config(command=sort_name)
-b22.grid(row=0, column=1)
+b22.grid(row=1, column=0)
 window.mainloop()
