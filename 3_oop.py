@@ -22,6 +22,7 @@ class Variable:
 obj = Variable(0, 0)
 
 def save_numb():
+    root.withdraw()
     new_variable1 = entr1.get()
     new_variable2 = entr2.get()
     obj.variable1, obj.variable2 = int(new_variable1), int(new_variable2)
@@ -38,24 +39,26 @@ def text_box_func(message):
 
 def click1():
     def cmd1():
-        lbl1 = Label(window, width=50, height=4, background='#FFF68F', font=("Arial", 12), )
+        lbl1 = Label(window, width=50, height=4, background='#FFE4E1', font=("Arial", 12), )
         lbl1.grid(row=1, column=2)
         lbl1['text'] = f'{obj.variable1}, {obj.variable2} \n'
 
     def cmd2():
         def save_numb2():
-            root1.withdraw()
-            if entr11 != '-' and entr21 != '-':
+            if entr11.get() != '-' and entr21.get() != '-':
                 new_variable1 = entr11.get()
                 new_variable2 = entr21.get()
                 obj.variable1, obj.variable2 = int(new_variable1), int(new_variable2)
-            elif entr11 == '-':
+            elif entr11.get() == '-' and entr21.get() != '-':
                 new_variable2 = entr21.get()
                 obj.variable2 = int(new_variable2)
-            elif entr21 == '-':
+            elif entr21.get() == '-' and entr11.get() != '-':
                 new_variable1 = entr11.get()
                 obj.variable1 = int(new_variable1)
+            if entr11.get() == '-' and entr21.get() == '-':
+                obj.variable1, obj.variable2 = obj.variable1, obj.variable2
             print(obj.variable1, obj.variable2)
+            root1.withdraw()
 
         root1 = Tk()
         root1.minsize(1050, 1050)
@@ -77,17 +80,18 @@ def click1():
 
 
     def cmd3():
-        lbl1 = Label(window, width=50, height=4, background='#FFF68F', font=("Arial", 12), )
+        lbl1 = Label(window, width=50, height=4, background='#FFE4E1', font=("Arial", 12), )
         lbl1.grid(row=1, column=2)
         lbl1['text'] = f'{obj.sum_variable()} \n'
 
     def cmd4():
-        lbl1 = Label(window, width=50, height=4, background='#FFF68F', font=("Aria l", 12), )
+        lbl1 = Label(window, width=50, height=4, background='#FFE4E1', font=("Aria l", 12), )
         lbl1.grid(row=1, column=2)
         lbl1['text'] = f'{obj.max_variable()} \n'
 
     window = Tk()
     window.title("2")
+    window['bg'] = '#FFE4E1'
     text_button = ['Вывести числа на экран', 'Изменить введенные числа', 'Сумма введенных чисел',
                        'Найти наибольшее значение']
     r2 = 0
@@ -119,7 +123,7 @@ b2['bg'] = '#EE82EE'
 b2['fg'] = '#0A0A0A'
 b2.place(relx=.5, rely=.6, anchor="c")
 root.mainloop()
-root.withdraw()
+
 
 
 
