@@ -87,6 +87,7 @@ def del_book():
 def sort_books():
 
     def sort1(l):
+        root.withdraw()
         global global_inf_about_book
         message = ""
         s_global_inf_about_book = [i.get_list_inf() for i in global_inf_about_book]
