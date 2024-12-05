@@ -86,62 +86,32 @@ def del_book():
 
 def sort_books():
 
-    def sort1():
+    def sort1(l):
         global global_inf_about_book
         message = ""
         s_global_inf_about_book = [i.get_list_inf() for i in global_inf_about_book]
-        s_global_inf_about_book.sort(key = lambda book1: book1[1])
+        s_global_inf_about_book.sort(key=lambda book1: book1[l])
         for book2 in s_global_inf_about_book:
             for book in global_inf_about_book:
                 if book.get_list_inf() == book2:
                     message += f'{book.get_inf_str()} \n'
-        text_box_func(message)
-    def sort2():
-        global global_inf_about_book
-        message = ""
-        s_global_inf_about_book = [i.get_list_inf() for i in global_inf_about_book]
-        s_global_inf_about_book.sort(key = lambda book1: book1[0])
-        for book2 in s_global_inf_about_book:
-            for book in global_inf_about_book:
-                if book.get_list_inf() == book2:
-                    message += f'{book.get_inf_str()} \n'
-        text_box_func(message)
-    def sort3():
-        global global_inf_about_book
-        message = ""
-        s_global_inf_about_book = [i.get_list_inf() for i in global_inf_about_book]
-        s_global_inf_about_book.sort(key = lambda book1: int(book1[2]))
-        for book2 in s_global_inf_about_book:
-            for book in global_inf_about_book:
-                if book.get_list_inf() == book2:
-                    message += f'{book.get_inf_str()} \n'
-        text_box_func(message)
-    def sort4():
-        global global_inf_about_book
-        message = "-"
-        s_global_inf_about_book = [i.get_list_inf() for i in global_inf_about_book]
-        s_global_inf_about_book.sort(key = lambda book1: book1[3])
-        for book2 in s_global_inf_about_book:
-            for book in global_inf_about_book:
-                if book.get_list_inf() == book2:
-                    message += f'{book.get_inf_str()} \n'
-            print(message)
         text_box_func(message)
 
     root = Tk()
     root.minsize(1050, 1050)
     root['bg'] = '#FFE4E1'
     root.title("Домашняя библиотека")
-    text_button = ['Имя автора', 'Название книги', 'Год издания книги', 'Жанр книги']
-    func_btn = [sort1, sort2, sort3, sort4]
-    r = 0
-    for text_btn in text_button:
+    text_button1 = ['Название книги', 'Имя автора', 'Год издания книги', 'Жанр книги']
+    # func_btn1 = [sort1, sort1, sort1, sort1]
+    func_btn = [lambda: sort1(0), lambda: sort1(1),  lambda: sort1(2),  lambda: sort1(3)]
+    l = 0
+    for text_btn in text_button1:
         b = Button(root, text=f'{text_btn}', width=50, height=4, font=("Arial", 14), background='#FFB6C1',
                    foreground='#0A0A0A')
-        func_cmd = func_btn[r]
+        func_cmd = func_btn[l]
         b.config(command=func_cmd)
-        b.grid(row=0 + r, column=0, ipadx=10, ipady=10, padx=10, pady=10, columnspan=1)
-        r += 1
+        b.grid(row=0 + l, column=0, ipadx=10, ipady=10, padx=10, pady=10, columnspan=1)
+        l += 1
 
     window.mainloop()
 def app_book():
